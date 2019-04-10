@@ -19,7 +19,7 @@ class TestLogin(unittest.TestCase):
         u"""登录案例参考:账号，密码正确"""
 
         try:
-            userfile = open(r'D:\PycharmProjects\untitled1\sishu\testdate\userinfo.txt', 'r')
+            userfile = open(r'D:\PycharmProjects\sishu\testdate\userinfo.txt', 'r')
             values = userfile.readlines()
             username = values[0].split(',')[0]
             password = values[0].split(',')[1]
@@ -41,45 +41,45 @@ class TestLogin(unittest.TestCase):
             print(u'正确帐号密码校验通过')
         finally:
             logout(self.driver)
-    #
-    # def test_02(self):
-    #     u"""登录案例参考:账号错误"""
-    #     try:
-    #         userfile = open(r'D:\PycharmProjects\untitled1\testdate\userinfo.txt', 'r')
-    #         values = userfile.readlines()
-    #         username = values[1].split(',')[0]
-    #         password = values[1].split(',')[1]
-    #         userfile.close()
-    #         login(self.driver,username, password)
-    #         raise1 = self.driver.find_element_by_id('normal-login-error-msg').text
-    #         self.assertEqual(raise1, u'用户不存在')
-    #     except AssertionError as msg:
-    #         print(msg)
-    #         raise
-    #     else:
-    #         print(u'账号错误校验通过')
 
-    # def test_03(self):
-    #     u"""登录案例参考:密码错误"""
-    #     try:
-    #         userfile = open(r'D:\PycharmProjects\untitled1\testdate\userinfo.txt', 'r')
-    #         values = userfile.readlines()
-    #         username = values[2].split(',')[0]
-    #         password = values[2].split(',')[1]
-    #         userfile.close()
-    #         login(self.driver,username, password)
-    #         time.sleep(5)
-    #         raise2 = self.driver.find_element_by_id('normal-login-error-msg').text
-    #         print(raise2)
-    #         self.assertEqual(raise2, u'密码错误')
-    #     except AssertionError as msg:
-    #         print(msg)
-    #         raise
-    #     else:
-    #         print(u'密码错误校验通过')
-    #
-    # def tearDown(self):
-    #     self.driver.quit()
+    def test_02(self):
+        u"""登录案例参考:账号错误"""
+        try:
+            userfile = open(r'D:\PycharmProjects\sishu\testdate\userinfo.txt', 'r')
+            values = userfile.readlines()
+            username = values[1].split(',')[0]
+            password = values[1].split(',')[1]
+            userfile.close()
+            login(self.driver,username, password)
+            raise1 = self.driver.find_element_by_id('normal-login-error-msg').text
+            self.assertEqual(raise1, u'用户不存在')
+        except AssertionError as msg:
+            print(msg)
+            raise
+        else:
+            print(u'账号错误校验通过')
+
+    def test_03(self):
+        u"""登录案例参考:密码错误"""
+        try:
+            userfile = open(r'D:\PycharmProjects\sishu\testdate\userinfo.txt', 'r')
+            values = userfile.readlines()
+            username = values[2].split(',')[0]
+            password = values[2].split(',')[1]
+            userfile.close()
+            login(self.driver,username, password)
+            time.sleep(5)
+            raise2 = self.driver.find_element_by_id('normal-login-error-msg').text
+            print(raise2)
+            self.assertEqual(raise2, u'密码错误')
+        except AssertionError as msg:
+            print(msg)
+            raise
+        else:
+            print(u'密码错误校验通过')
+
+    def tearDown(self):
+        self.driver.quit()
 
 
 if __name__ == '__main__':

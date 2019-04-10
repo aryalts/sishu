@@ -6,7 +6,7 @@ import time
 
 def all_case():
     suite = unittest.TestSuite()
-    test_dir = r'D:\PycharmProjects\untitled1\sishu\testcase'
+    test_dir = r'D:\PycharmProjects\sishu\testcase'
     discover = unittest.defaultTestLoader.discover(test_dir, pattern='test*.py')
     print(discover)
     for test_suite in discover:
@@ -16,7 +16,7 @@ def all_case():
 
 
 now = time.strftime('%y-%m-%d %H-%M-%S')
-filename = r'D:\PycharmProjects\untitled1\sishu\report\\' + now + 'result.html'
+filename = r'D:\PycharmProjects\sishu\report\\' + now + 'result.html'
 fp = open(filename, 'wb')
 # runner = unittest.TextTestRunner()
 runner = HTMLTestRunner.HTMLTestRunner(stream=fp, title=u'私塾登录测试报告', description=u'用例执行情况')
