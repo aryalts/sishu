@@ -19,7 +19,7 @@ class TestLogin(unittest.TestCase):
         u"""登录案例参考:账号，密码正确"""
 
         try:
-            userfile = open(r'D:\PycharmProjects\untitled1\testdate\userinfo.txt', 'r')
+            userfile = open(r'D:\PycharmProjects\untitled1\sishu\testdate\userinfo.txt', 'r')
             values = userfile.readlines()
             username = values[0].split(',')[0]
             password = values[0].split(',')[1]
