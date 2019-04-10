@@ -2,7 +2,9 @@
 from selenium import webdriver
 from public.login import *
 import unittest
-import time
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.by import By
 
 
 class TestLogin(unittest.TestCase):
@@ -15,6 +17,7 @@ class TestLogin(unittest.TestCase):
 
     def test_01(self):
         u"""登录案例参考:账号，密码正确"""
+
         try:
             userfile = open(r'D:\PycharmProjects\untitled1\testdate\userinfo.txt', 'r')
             values = userfile.readlines()
@@ -22,9 +25,15 @@ class TestLogin(unittest.TestCase):
             password = values[0].split(',')[1]
             userfile.close()
             login(self.driver,username, password)
-            time.sleep(3)
-            raise0 = self.driver.find_element_by_id('user-name').text
-            self.assertEqual(raise0, 'uatStudent01')
+
+            ele = WebDriverWait(self.driver, 10).until(EC.text_to_be_present_in_element((By.XPATH, "/html/body/div[5]/div/div/div[1]/h4"), u'提示'))
+            if ele is True:
+                self.driver.find_element_by_xpath("/html/body/div[5]/div/div/div[3]/button[1]").click()
+                raise0 = self.driver.find_element_by_id('user-name').text
+                self.assertEqual(raise0, 'uat01.test')
+            else:
+                raise0 = self.driver.find_element_by_id('user-name').text
+                self.assertEqual(raise0, 'uat01.test')
         except AssertionError as msg:
             print(msg)
             raise
@@ -32,43 +41,45 @@ class TestLogin(unittest.TestCase):
             print(u'正确帐号密码校验通过')
         finally:
             logout(self.driver)
+    #
+    # def test_02(self):
+    #     u"""登录案例参考:账号错误"""
+    #     try:
+    #         userfile = open(r'D:\PycharmProjects\untitled1\testdate\userinfo.txt', 'r')
+    #         values = userfile.readlines()
+    #         username = values[1].split(',')[0]
+    #         password = values[1].split(',')[1]
+    #         userfile.close()
+    #         login(self.driver,username, password)
+    #         raise1 = self.driver.find_element_by_id('normal-login-error-msg').text
+    #         self.assertEqual(raise1, u'用户不存在')
+    #     except AssertionError as msg:
+    #         print(msg)
+    #         raise
+    #     else:
+    #         print(u'账号错误校验通过')
 
-    def test_02(self):
-        u"""登录案例参考:账号错误"""
-        try:
-            userfile = open(r'D:\PycharmProjects\untitled1\testdate\userinfo.txt', 'r')
-            values = userfile.readlines()
-            username = values[1].split(',')[0]
-            password = values[1].split(',')[1]
-            userfile.close()
-            login(self.driver,username, password)
-            raise1 = self.driver.find_element_by_id('normal-login-error-msg').text
-            self.assertEqual(raise1, u'用户不存在')
-        except AssertionError as msg:
-            print(msg)
-            raise
-        else:
-            print(u'账号错误校验通过')
-
-    def test_03(self):
-        u"""登录案例参考:密码错误"""
-        try:
-            userfile = open(r'D:\PycharmProjects\untitled1\testdate\userinfo.txt', 'r')
-            values = userfile.readlines()
-            username = values[2].split(',')[0]
-            password = values[2].split(',')[1]
-            userfile.close()
-            login(self.driver,username, password)
-            raise2 = self.driver.find_element_by_id('normal-login-error-msg').text
-            self.assertEqual(raise2, u'密码错误')
-        except AssertionError as msg:
-            print(msg)
-            raise
-        else:
-            print(u'密码错误校验通过')
-
-    def tearDown(self):
-        self.driver.quit()
+    # def test_03(self):
+    #     u"""登录案例参考:密码错误"""
+    #     try:
+    #         userfile = open(r'D:\PycharmProjects\untitled1\testdate\userinfo.txt', 'r')
+    #         values = userfile.readlines()
+    #         username = values[2].split(',')[0]
+    #         password = values[2].split(',')[1]
+    #         userfile.close()
+    #         login(self.driver,username, password)
+    #         time.sleep(5)
+    #         raise2 = self.driver.find_element_by_id('normal-login-error-msg').text
+    #         print(raise2)
+    #         self.assertEqual(raise2, u'密码错误')
+    #     except AssertionError as msg:
+    #         print(msg)
+    #         raise
+    #     else:
+    #         print(u'密码错误校验通过')
+    #
+    # def tearDown(self):
+    #     self.driver.quit()
 
 
 if __name__ == '__main__':
