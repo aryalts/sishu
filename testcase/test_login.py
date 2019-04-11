@@ -13,11 +13,12 @@ class TestLogin(unittest.TestCase):
         self.driver.maximize_window()
         url = "http://uat-member.51uuabc.com/wapuser/app_main.php?act=login&url="
         self.driver.get(url)
-        self.driver.implicitly_wait(10)
+        # self.driver.implicitly_wait(10)
+        locate0 = (By.ID,"username")
+        WebDriverWait(self.driver,10).until(EC.presence_of_element_located(locate0))
 
     def test_01(self):
         u"""登录案例参考:账号，密码正确"""
-
         try:
             userfile = open(r'D:\PycharmProjects\sishu\testdate\userinfo.txt', 'r')
             values = userfile.readlines()
@@ -26,9 +27,11 @@ class TestLogin(unittest.TestCase):
             userfile.close()
             login(self.driver,username, password)
 
-            ele = WebDriverWait(self.driver, 10).until(EC.text_to_be_present_in_element((By.XPATH, "/html/body/div[5]/div/div/div[1]/h4"), u'提示'))
+            locate1 = (By.XPATH, "//h4[@class='modal-title']")
+            ele = WebDriverWait(self.driver, 10).until(EC.text_to_be_present_in_element(locate1, u'提示'))
             if ele is True:
-                self.driver.find_element_by_xpath("/html/body/div[5]/div/div/div[3]/button[1]").click()
+                self.driver.find_element_by_xpath("//button[@class='btn btn-usasishu-blue btn-cancel w-100']").click()
+                time.sleep(3)
                 raise0 = self.driver.find_element_by_id('user-name').text
                 self.assertEqual(raise0, 'uat01.test')
             else:
@@ -51,6 +54,7 @@ class TestLogin(unittest.TestCase):
             password = values[1].split(',')[1]
             userfile.close()
             login(self.driver,username, password)
+            time.sleep(3)
             raise1 = self.driver.find_element_by_id('normal-login-error-msg').text
             self.assertEqual(raise1, u'用户不存在')
         except AssertionError as msg:
@@ -68,9 +72,8 @@ class TestLogin(unittest.TestCase):
             password = values[2].split(',')[1]
             userfile.close()
             login(self.driver,username, password)
-            time.sleep(5)
+            time.sleep(3)
             raise2 = self.driver.find_element_by_id('normal-login-error-msg').text
-            print(raise2)
             self.assertEqual(raise2, u'密码错误')
         except AssertionError as msg:
             print(msg)
@@ -85,8 +88,8 @@ class TestLogin(unittest.TestCase):
 if __name__ == '__main__':
     suite = unittest.TestSuite()
     suite.addTest(TestLogin('test_01'))
-    suite.addTest(TestLogin('test_02'))
-    suite.addTest(TestLogin('test_03'))
+    # suite.addTest(TestLogin('test_02'))
+    # suite.addTest(TestLogin('test_03'))
 
     runner = unittest.TextTestRunner()
     runner.run(suite)

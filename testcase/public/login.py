@@ -11,7 +11,7 @@ def login(driver,username, password):
 
 # 退出
 def logout(driver):
-    time.sleep(3)
+    # time.sleep(3)
     driver.find_element_by_id("user-name").click()
     # driver.find_element_by_id("btn-logout").click()
     # driver.find_element_by_xpath("//li[@id='btn-logout']").click()
