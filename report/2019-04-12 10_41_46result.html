@@ -2,7 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title>私塾登录测试报告</title>
+    <title>自动化测试报告</title>
     <meta name="generator" content="HTMLTestRunner 0.8.2"/>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     
@@ -169,12 +169,12 @@ function showOutput(id, name) {
 */
 --></script>
 <div class='heading'>
-<h1>私塾登录测试报告</h1>
-<p class='attribute'><strong>Start Time:</strong> 2019-04-11 10:42:35</p>
-<p class='attribute'><strong>Duration:</strong> 0:00:49.913855</p>
-<p class='attribute'><strong>Status:</strong> Pass 3</p>
+<h1>自动化测试报告</h1>
+<p class='attribute'><strong>Start Time:</strong> 2019-04-12 10:41:46</p>
+<p class='attribute'><strong>Duration:</strong> 0:00:39.548262</p>
+<p class='attribute'><strong>Status:</strong> Pass 1 Failure 1 Error 1</p>
 
-<p class='description'>用例执行情况</p>
+<p class='description'>用例执行情况：</p>
 </div>
 
 
@@ -201,29 +201,59 @@ function showOutput(id, name) {
     <td>View</td>
 </tr>
 
-<tr class='passClass'>
+<tr class='errorClass'>
     <td>test_login.TestLogin</td>
     <td>3</td>
-    <td>3</td>
-    <td>0</td>
-    <td>0</td>
+    <td>1</td>
+    <td>1</td>
+    <td>1</td>
     <td><a href="javascript:showClassDetail('c1',3)">Detail</a></td>
 </tr>
 
-<tr id='pt1.1' class='hiddenRow'>
-    <td class='none'><div class='testcase'>test_01: 登录案例参考:账号，密码正确</div></td>
+<tr id='ft1.1' class='none'>
+    <td class='errorCase'><div class='testcase'>test_01: 登录案例参考:账号，密码正确</div></td>
     <td colspan='5' align='center'>
     <!--css div popup start-->
-    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.1')" >
-        pass</a>
-    <div id='div_pt1.1' class="popup_window">
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.1')" >
+        error</a>
+    <div id='div_ft1.1' class="popup_window">
         <div style='text-align: right; color:red;cursor:pointer'>
-        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.1').style.display = 'none' " >
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.1').style.display = 'none' " >
            [x]</a>
         </div>
         <pre>
         
-pt1.1: 正确帐号密码校验通过
+ft1.1: Traceback (most recent call last):
+  File "D:\PycharmProjects\sishu\testcase\test_login.py", line 33, in test_01
+    self.driver.find_element_by_xpath("//button[@class='btn btn-usasishu-blue btn-cancel w-100']").click()
+  File "D:\Python37-32\lib\site-packages\selenium\webdriver\remote\webelement.py", line 80, in click
+    self._execute(Command.CLICK_ELEMENT)
+  File "D:\Python37-32\lib\site-packages\selenium\webdriver\remote\webelement.py", line 633, in _execute
+    return self._parent.execute(command, params)
+  File "D:\Python37-32\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "D:\Python37-32\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.ElementClickInterceptedException: Message: Element &lt;button class="btn btn-usasishu-blue btn-cancel w-100" type="button"&gt; is not clickable at point (1026,184) because another element &lt;div class="loading-container"&gt; obscures it
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\PycharmProjects\sishu\testcase\test_login.py", line 46, in test_01
+    logout(self.driver)
+  File "D:\PycharmProjects\sishu\testcase\public\login.py", line 15, in logout
+    driver.find_element_by_id("user-name").click()
+  File "D:\Python37-32\lib\site-packages\selenium\webdriver\remote\webelement.py", line 80, in click
+    self._execute(Command.CLICK_ELEMENT)
+  File "D:\Python37-32\lib\site-packages\selenium\webdriver\remote\webelement.py", line 633, in _execute
+    return self._parent.execute(command, params)
+  File "D:\Python37-32\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "D:\Python37-32\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.ElementClickInterceptedException: Message: Element &lt;div id="user-name" class="user-name fs-14"&gt; is not clickable at point (1815,50) because another element &lt;div class="loading-container"&gt; obscures it
+
 
 
         </pre>
@@ -232,20 +262,26 @@ pt1.1: 正确帐号密码校验通过
     </td>
 </tr>
 
-<tr id='pt1.2' class='hiddenRow'>
-    <td class='none'><div class='testcase'>test_02: 登录案例参考:账号错误</div></td>
+<tr id='ft1.2' class='none'>
+    <td class='failCase'><div class='testcase'>test_02: 登录案例参考:账号错误</div></td>
     <td colspan='5' align='center'>
     <!--css div popup start-->
-    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.2')" >
-        pass</a>
-    <div id='div_pt1.2' class="popup_window">
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.2')" >
+        fail</a>
+    <div id='div_ft1.2' class="popup_window">
         <div style='text-align: right; color:red;cursor:pointer'>
-        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.2').style.display = 'none' " >
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.2').style.display = 'none' " >
            [x]</a>
         </div>
         <pre>
         
-pt1.2: 账号错误校验通过
+ft1.2: '' != '用户不存在'
++ 用户不存在
+Traceback (most recent call last):
+  File "D:\PycharmProjects\sishu\testcase\test_login.py", line 59, in test_02
+    self.assertEqual(raise1, u'用户不存在')
+AssertionError: '' != '用户不存在'
++ 用户不存在
 
 
         </pre>
@@ -279,9 +315,9 @@ pt1.3: 密码错误校验通过
 <tr id='total_row'>
     <td>Total</td>
     <td>3</td>
-    <td>3</td>
-    <td>0</td>
-    <td>0</td>
+    <td>1</td>
+    <td>1</td>
+    <td>1</td>
     <td>&nbsp;</td>
 </tr>
 </table>
