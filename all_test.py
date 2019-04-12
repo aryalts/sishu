@@ -26,8 +26,8 @@ def send_mail(file_new):
 
 def send_report(reportdir):
     lists = os.listdir(reportdir)
-
-    lists.sort(key=lambda fn: os.path.getmtime(reportdir+"\\"+fn))
+    # key为函数，指定取待排序元素的哪一项进行排序，x表示列表中的一个元素，在这里，表示一个文件名，x只是临时起的一个名字，你可以使用任意的名字；
+    lists.sort(key=lambda x: os.path.getmtime(reportdir+"\\"+x))
     file_new = os.path.join(reportdir,lists[-1])
     send_mail(file_new)
 
@@ -47,7 +47,7 @@ if __name__ == '__main__':
     report = reportdir + now + 'result.html'
     fp = open(report, 'wb')
     runner = HTMLTestRunner.HTMLTestRunner(stream=fp, title=u'自动化测试报告', description=u'用例执行情况：')
-    # runner.run(creatsuite())
+    runner.run(creatsuite())
     fp.close()
     send_report(reportdir)
 
