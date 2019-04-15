@@ -4,31 +4,45 @@ import HTMLTestRunner
 import time,os
 import smtplib
 from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+from email.mime.application import MIMEApplication
 
 
 def send_mail(file_new):
-    mail_from = '875867302@qq.com'
-    mail_to = 'tishuo.lu@uuabc.com'
+    sender = 'lutishuo@126.com'
+    receiver = ['tishuo.lu@uuabc.com','875867302@qq.com']
+
     f = open(file_new, 'rb')
     mail_body = f.read()
     f.close()
-    msg = MIMEText(mail_body,_subtype='html',_charset='utf-8')
-    msg['Subject'] = u"自动化测试报告"
 
-    # msg['date'] = time.strftime('%a, %d %b %Y %H:%M:%S %z')
+    msg = MIMEMultipart('related')
+    part1 = MIMEText(mail_body,_subtype='html',_charset='utf-8')
+    msg.attach(part1)
+
+    part2 = MIMEApplication(mail_body)
+    part2.add_header('Content-Disposition','attachment',filename='file.html')
+    msg.attach(part2)
+
+    msg['Subject'] = u"自动化测试报告"
+    msg['from'] = 'lucas<lutishuo@126.com>'
+
+
+
     smtp = smtplib.SMTP()
-    smtp.connect('smtp.qq.com')
-    smtp.login('875867302@qq.com','lfapqstickocbdbd')
-    smtp.sendmail(mail_from,mail_to,msg.as_string())
+    smtp.connect('smtp.126.com')
+
+    smtp.login('lutishuo@126.com','lts103613')
+    smtp.sendmail(sender,receiver,msg.as_string())
     smtp.quit()
     print('email has send out !')
 
 
 def send_report(reportdir):
     lists = os.listdir(reportdir)
-    # key 是带一个参数的函数，指定取待排序元素的哪一项进行排序，x表示列表中的一个元素，在这里表示一个文件名，x只是临时起的一个名字，你可以使用任意的名字；
+    # sort按key的关键字进行排序，lambda的入参x为lists列表的元素，获取文件的最后修改时间，x只是临时起的一个名字，你可以使用任意的名字；
     lists.sort(key=lambda x: os.path.getmtime(reportdir+"\\"+x))
-    file_new = os.path.join(reportdir,lists[-1])
+    file_new = os.path.join(reportdir,lists[-2])
     send_mail(file_new)
 
 
@@ -47,7 +61,7 @@ if __name__ == '__main__':
     report = reportdir + now + 'result.html'
     fp = open(report, 'wb')
     runner = HTMLTestRunner.HTMLTestRunner(stream=fp, title=u'自动化测试报告', description=u'用例执行情况：')
-    runner.run(creatsuite())
+    # runner.run(creatsuite())
     fp.close()
     send_report(reportdir)
 
