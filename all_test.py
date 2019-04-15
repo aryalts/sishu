@@ -26,7 +26,7 @@ def send_mail(file_new):
 
 def send_report(reportdir):
     lists = os.listdir(reportdir)
-    # key为函数，指定取待排序元素的哪一项进行排序，x表示列表中的一个元素，在这里，表示一个文件名，x只是临时起的一个名字，你可以使用任意的名字；
+    # key 是带一个参数的函数，指定取待排序元素的哪一项进行排序，x表示列表中的一个元素，在这里表示一个文件名，x只是临时起的一个名字，你可以使用任意的名字；
     lists.sort(key=lambda x: os.path.getmtime(reportdir+"\\"+x))
     file_new = os.path.join(reportdir,lists[-1])
     send_mail(file_new)

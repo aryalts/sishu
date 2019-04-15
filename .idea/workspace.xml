@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="f3199d5b-b21f-4bd9-bba0-59ae3a164382" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/all_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/all_test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/geckodriver.log" beforeDir="false" afterPath="$PROJECT_DIR$/geckodriver.log" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -80,11 +79,11 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/all_test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="827">
-              <caret line="56" lean-forward="true" selection-start-line="56" selection-end-line="56" />
+            <state relative-caret-position="247">
+              <caret line="31" column="23" lean-forward="true" selection-start-line="31" selection-start-column="23" selection-end-line="31" selection-end-column="23" />
               <folding>
                 <element signature="e#22#37#0" expanded="true" />
-                <marker date="1555066940835" expanded="true" signature="807:812" ph="..." />
+                <marker date="1555308374961" expanded="true" signature="813:818" ph="..." />
               </folding>
             </state>
           </provider>
@@ -286,11 +285,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/all_test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="827">
-          <caret line="56" lean-forward="true" selection-start-line="56" selection-end-line="56" />
+        <state relative-caret-position="247">
+          <caret line="31" column="23" lean-forward="true" selection-start-line="31" selection-start-column="23" selection-end-line="31" selection-end-column="23" />
           <folding>
             <element signature="e#22#37#0" expanded="true" />
-            <marker date="1555066940835" expanded="true" signature="807:812" ph="..." />
+            <marker date="1555308374961" expanded="true" signature="813:818" ph="..." />
           </folding>
         </state>
       </provider>
