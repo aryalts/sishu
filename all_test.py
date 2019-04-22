@@ -3,20 +3,22 @@ import unittest
 import HTMLTestRunner
 import time,os
 import smtplib
-from email.mime.text import MIMEText
-from email.mime.multipart import MIMEMultipart
-from email.mime.application import MIMEApplication
+from email.mime.text import MIMEText # 发送正文
+from email.mime.multipart import MIMEMultipart # 发送多个部分
+from email.mime.application import MIMEApplication # 发送附件
 
 
 def send_mail(file_new):
     sender = 'lutishuo@126.com'
     receiver = ['tishuo.lu@uuabc.com','875867302@qq.com']
 
-    f = open(file_new, 'rb')
-    mail_body = f.read()
-    f.close()
+    # f = open(file_new, 'rb')
+    # mail_body = f.read()
+    # f.close()
+    with open(file_new, 'rb') as f:
+        mail_body = f.read()
 
-    msg = MIMEMultipart('related')
+    msg = MIMEMultipart()
     part1 = MIMEText(mail_body,_subtype='html',_charset='utf-8')
     msg.attach(part1)
 
@@ -25,13 +27,12 @@ def send_mail(file_new):
     msg.attach(part2)
 
     msg['Subject'] = u"自动化测试报告"
-    msg['from'] = 'lucas<lutishuo@126.com>'
-
+    msg['from'] = 'lutishuo@126.com'
+    msg['to'] = ','.join(receiver)
 
 
     smtp = smtplib.SMTP()
     smtp.connect('smtp.126.com')
-
     smtp.login('lutishuo@126.com','lts103613')
     smtp.sendmail(sender,receiver,msg.as_string())
     smtp.quit()

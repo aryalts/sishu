@@ -27,6 +27,7 @@ class TestLogin(unittest.TestCase):
             userfile.close()
             login(self.driver,username, password)
 
+            time.sleep(5)
             locate1 = (By.XPATH, "//h4[@class='modal-title']")
             ele = WebDriverWait(self.driver, 10).until(EC.text_to_be_present_in_element(locate1, u'提示'))
             if ele is True:
