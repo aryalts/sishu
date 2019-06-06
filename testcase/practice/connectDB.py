@@ -12,13 +12,13 @@ config = {
 
 
 db = pymysql.connect(**config)
-test1 = '2019-05-01 00:00:00'
-# string格式的时间转为元组
-test2 = time.strptime(test1, "%Y-%m-%d %H:%M:%S")
-# 元组格式的时间转为时间戳
-test3 = int(time.mktime(test2))
-# 元组格式的时间转为string
-test4 = time.strftime("%Y-%m-%d %H:%M:%S", test2)
+# test1 = '2019-05-01 00:00:00'
+# # string格式的时间转为元组
+# test2 = time.strptime(test1, "%Y-%m-%d %H:%M:%S")
+# # 元组格式的时间转为时间戳
+# test3 = int(time.mktime(test2))
+# # 元组格式的时间转为string
+# test4 = time.strftime("%Y-%m-%d %H:%M:%S", test2)
 
 try:
     with db.cursor() as cursor:
