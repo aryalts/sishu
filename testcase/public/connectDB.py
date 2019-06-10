@@ -1,7 +1,6 @@
 # -*- coding:utf8 -*-
 import pymysql.cursors
 from sshtunnel import SSHTunnelForwarder
-import pymongo
 
 
 
@@ -41,13 +40,7 @@ def conmysql(sql):
 #     collection2 = db.remuses
 #     collection2.remobe({"email":data})
 
-def conmongodb(data):
-    myclient = pymongo.MongoClient("mongodb://10.68.100.54:27017/")
-    mydb = myclient["recruit"]
-    mycol1 = mydb["teachers"]
-    mycol1.delete_one({'email':data})
-    mycol2 = mydb["resumes"]
-    mycol2.delete_one({'email':data})
+
 
 
 
