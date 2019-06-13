@@ -22,7 +22,6 @@ class Kol(unittest.TestCase):
         s = requests.session()
         r = s.post(self.base_url, data=self.playload, headers=self.headers)
         # response = requests.request("POST", url, data=payload, headers=headers)
-
         # json字符串解码成python格式数据
         dicts = json.loads(r.text)
         print(dicts)

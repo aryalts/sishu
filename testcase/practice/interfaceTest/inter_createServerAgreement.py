@@ -16,13 +16,15 @@ class CreatServiceAgreement(unittest.TestCase):
             "Referer": "https://uat-teacher.51uuabc.com/admin/teacher/",
             "User-Agent": "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36"
         }
-        self.playload = '{"operationName":"createTeacherServiceAgreement","variables":{"input":{"teacherId":"20480","signedType":"Parttime","effectiveStartTime":1559318400000,"effectiveEndTime":1561910399000,"status":"Pending","enabled":"Enabled","currency":"USD"}},"query":"mutation createTeacherServiceAgreement($input: CreateTeacherServiceAgreementInput!) {\n  createTeacherServiceAgreement(input: $input) {\n    code\n    msg\n    resultCode\n    affectedIds\n    __typename\n  }\n}\n"}'
+        self.playload = "{\"operationName\":\"createTeacherServiceAgreement\",\"variables\":{\"input\":{\"teacherId\":\"20480\",\"signedType\":\"Parttime\",\"effectiveStartTime\":1559318400000,\"effectiveEndTime\":1561910399000,\"status\":\"Pending\",\"enabled\":\"Enabled\",\"currency\":\"USD\"}},\"query\":\"mutation createTeacherServiceAgreement($input: CreateTeacherServiceAgreementInput!) {\\n  createTeacherServiceAgreement(input: $input) {\\n    code\\n    msg\\n    resultCode\\n    affectedIds\\n    __typename\\n  }\\n}\\n\"}"
 
     def test_01(self):
         u"""创建合约"""
         s = requests.session()
         r = s.post(self.base_url,data=self.playload,headers=self.headers)
+
         dicts = json.loads(r.text)
+        self._id = dicts['data']['createTeacherServiceAgreement']['affectedIds'][0]
         print(dicts)
         self.assertEqual(dicts['data']['createTeacherServiceAgreement']['resultCode'], 'Success')
 
@@ -30,11 +32,9 @@ class CreatServiceAgreement(unittest.TestCase):
         client = pymongo.MongoClient("mongodb://10.68.100.54:27017/")
         db = client["recruit"]
         col01 = db["serviceagreements"]
-        col01.delete_one({"teacherId": "20480"})
-        col02 = db["salaryagreements"]
-        col02.delete_one({"teacherId": "20480"})
-        col03 = db["workingtimeagreements"]
-        col03.delete_one({"teacherId": "20480"})
+        # col01.delete_one({"teacherId": "20480"})
+        print(self._id)
+        col01.delete_one({"_id":self._id})
 
 
 if __name__ == '__main__':
