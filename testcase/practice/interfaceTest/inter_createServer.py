@@ -4,9 +4,17 @@ import unittest
 import requests
 import HTMLTestRunner
 import json
+from bsons.objectid import ObjectId
+
+"""下载PyMongo模块时 它会有一个相对应bson模块 也就是说 PyMongo模块的实现是基于和它一起的bson模块的 
+该bson模块 并非我们用 pip install bson 安装的 bson。 
+当你的系统环境下 同时具备这两个模块时 PyMongo模块和bson模块的相对应功能便会挂掉 .
+解决方案：在需要bson模块时 将其下载好 放置自己项目的目录下 并改名使用
+原文：https://blog.csdn.net/weixin_39352438/article/details/80109647 
+"""
 
 
-class CreatServiceAgreement(unittest.TestCase):
+class CreatService(unittest.TestCase):
     def setUp(self):
         self.base_url = 'https://uat-svc.51uuabc.com/api/graphql'
         self.headers = {
@@ -22,26 +30,18 @@ class CreatServiceAgreement(unittest.TestCase):
         u"""创建合约"""
         s = requests.session()
         r = s.post(self.base_url,data=self.playload,headers=self.headers)
-
-        dicts = json.loads(r.text)
-        self._id = dicts['data']['createTeacherServiceAgreement']['affectedIds'][0]
-        print(dicts)
-        self.assertEqual(dicts['data']['createTeacherServiceAgreement']['resultCode'], 'Success')
+        self.dicts = json.loads(r.text)
+        self.assertEqual(self.dicts['data']['createTeacherServiceAgreement']['resultCode'], 'Success')
 
     def tearDown(self):
-        client = pymongo.MongoClient("mongodb://10.68.100.54:27017/")
-        db = client["recruit"]
-        col01 = db["serviceagreements"]
-        # col01.delete_one({"teacherId": "20480"})
-        print(self._id)
-        col01.delete_one({"_id":self._id})
+        self._id = self.dicts['data']['createTeacherServiceAgreement']['affectedIds'][0]
+        print(u"创建合约ID为:{}".format(self._id))
 
 
 if __name__ == '__main__':
     # 构造测试集
     suite = unittest.TestSuite()
-    suite.addTest(CreatServiceAgreement('test_01'))
-    # suite.addTest(Kol('test_02'))
+    suite.addTest(CreatService('test_01'))
     fp = open('F://test//temp.html', 'wb')
     # 执行测试
     runner = HTMLTestRunner.HTMLTestRunner(stream=fp, title=u'接口测试用例', description=u'接口列表：')
