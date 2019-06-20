@@ -21,25 +21,25 @@ class CreatSalary(unittest.TestCase):
             'authorization': "Bearer h05bPDXRUYaAuw5U1QSkwvdaq0sUmUqqPV63in2yOVI8YIirtbY2UJO_RKgTcRzys_lHUYtbKO_ILMV6YP67VQ",
             'cache-control': "no-cache",
         }
-        self.playload = "{\"operationName\":\"createTeacherSalaryAgreement\",\"variables\":{\"input\":{\"serviceAgreementId\":\"\",\"teacherId\":\"20480\",\"effectiveStartTime\":1559318400000,\"effectiveEndTime\":1561910399000,\"one2one\":0,\"smallClass\":0,\"live\":0,\"absenteeism\":0,\"openCourse\":0,\"wait\":0,\"subsidy\":0}},\"query\":\"mutation createTeacherSalaryAgreement($input: CreateTeacherSalaryAgreementInput) {\\n  createTeacherSalaryAgreement(input: $input) {\\n    code\\n    msg\\n    resultCode\\n    __typename\\n  }\\n}\\n\"}"
+        self.playload = "{\"operationName\":\"createTeacherSalaryAgreement\",\"variables\":{\"input\":{\"serviceAgreementId\":\"\",\"teacherId\":\"20480\",\"effectiveStartTime\":1559318400000,\"effectiveEndTime\":1561910399000,\"one2one\":0,\"smallClass\":0,\"live\":0,\"absenteeism\":0,\"openCourse\":0,\"wait\":0,\"subsidy\":0}},\"query\":\"mutation createTeacherSalaryAgreement($input: CreateTeacherSalaryAgreementInput) {\\n  createTeacherSalaryAgreement(input: $input) {\\n    code\\n    msg\\n    resultCode\\n    affectedIds\\n    __typename\\n  }\\n}\\n\"}"
         dicts_pload = json.loads(self.playload)
         dicts_pload["variables"]["input"]["serviceAgreementId"] = self._id
-        print(dicts_pload)
-        self.playload = dicts_pload
-        print(self.playload)
+        self.playload = json.dumps(dicts_pload)
 
     def test_01(self):
         u"""创建薪资"""
         s = requests.session()
         r = s.post(self.base_url, data=self.playload, headers=self.headers)
-        dicts = json.loads(r.text)
-        self.assertEqual(dicts['data']['createTeacherSalaryAgreement']['resultCode'], 'Success')
+        self.dicts = json.loads(r.text)
+        self.assertEqual(self.dicts['data']['createTeacherSalaryAgreement']['resultCode'], 'Success')
 
-    # def tearDown(self):
-    #     # client = pymongo.MongoClient("mongodb://10.68.100.54:27017/")
-    #     # db = client["recruit"]
-    #     # col_sa = db["salaryagreements"]
-    #     # col_sa.delete_one({"_id": ObjectId("5d033ece5276f8243daa2af4")})
+    def tearDown(self):
+        client = pymongo.MongoClient("mongodb://10.68.100.54:27017/")
+        db = client["recruit"]
+        col_sa = db["salaryagreements"]
+        self._said = self.dicts['data']['createTeacherSalaryAgreement']['affectedIds'][0]
+        col_sa.delete_one({"_id": ObjectId(self._said)})
+        print(u"删除合约ID:{}的薪资ID:{}".format(self._id, self._said))
 
 
 if __name__ == '__main__':
