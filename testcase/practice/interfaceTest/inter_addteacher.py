@@ -5,7 +5,7 @@ import json
 from bsons.objectid import ObjectId
 
 
-def addTeacher(email_demo,fname,lname):
+def add_teacher(email_demo, first_name, last_name):
     base_url = 'https://uat-svc.51uuabc.com/api/graphql'
     headers = {
         "authorization": "Bearer h05bPDXRUYaAuw5U1QSkwvdaq0sUmUqqPV63in2yOVI8YIirtbY2UJO_RKgTcRzys_lHUYtbKO_ILMV6YP67VQ",
@@ -20,7 +20,7 @@ def addTeacher(email_demo,fname,lname):
     dicts_p4 = json.loads(p4)
     dicts_p4["variables"]["input"]["email"] = email_demo
     p4 = json.dumps(dicts_p4)
-    r4 = s.post(base_url,data=p4,headers=headers)
+    r4 = s.post(base_url, data=p4, headers=headers)
     dicts4 = json.loads(r4.text)
     teacherId = dicts4['data']['addAccount']['teacherId']
     print(u"创建老师ID为:{}".format(teacherId))
@@ -29,10 +29,10 @@ def addTeacher(email_demo,fname,lname):
     p5 = "{\"operationName\":\"updateTeacher\",\"variables\":{\"input\":{\"teacherId\":\"\",\"firstName\":\"\",\"lastName\":\"\",\"gender\":\"Male\",\"birthDate\":1559318400000,\"contactInfo\":{\"skype\":\"s\",\"wechat\":\"w\",\"phone\":\"p\"},\"isNativeSpeaker\":true,\"nationality\":\"United States\",\"currentResidence\":\"United States of America\",\"educationBackground\":\"Bachelor\",\"detailEducationExperience\":[{\"startDate\":\"2019-05-31T16:00:00.000Z\",\"endDate\":\"2019-06-29T16:00:00.000Z\",\"countryOfInstitution\":\"Afghanistan\",\"nameOfInstitution\":\"N\",\"major\":\"M\"}],\"teachingExperience\":[{\"name\":\"Online\",\"months\":24},{\"name\":\"Offline\",\"months\":12}],\"detailTeachingExperience\":[{\"startDate\":\"2019-05-31T16:00:00.000Z\",\"endDate\":\"2019-06-29T16:00:00.000Z\",\"countryOfInstitution\":\"Afghanistan\",\"nameOfInstitution\":\"N\",\"jobTitle\":\"J\",\"duty\":\"D\"}],\"teachingCertificateTypes\":[{\"key\":\"CELTA\",\"value\":\"CELTA\"}],\"chineseSkill\":\"None\",\"onlineHoursPerWeek\":\"LessThanFour\",\"channelKnowUs\":\"Facebook\",\"refererDetail\":{\"referenceCode\":\"\",\"referenceTeacherId\":\"\"},\"selfIntroduction\":{\"text\":[{\"name\":\"short\",\"lang\":\"CN\",\"text\":\"中文自我介绍\"},{\"name\":\"short\",\"lang\":\"EN\",\"text\":\"英文自我介绍\"}],\"portrait\":[{\"name\":\"small\",\"url\":\"https://uutest2.uuabc.com/teacher/passport/201951910847/uploadPassport\",\"desc\":\"teacherAdminCreat\",\"sourceType\":\"PC\"}],\"video\":[{\"name\":\"forStudent\",\"url\":\"https://uutest2.uuabc.com/teacher/video/2019519101052/1.mp4\",\"desc\":\"teacherAdminCreat\",\"sourceType\":\"PC\"}]},\"curriculumVitae\":{\"name\":\"\",\"url\":\"\",\"desc\":\"teacherAdminCreat\",\"sourceType\":\"PC\"},\"academicCertificates\":[],\"teachingCertificates\":[],\"emergencyContact\":{\"name\":\"\",\"phone\":\"\"},\"comments\":\"\",\"entryDate\":1559318400000,\"firstPageOfPassport\":{\"name\":\"passport\",\"url\":\"\",\"desc\":\"teacherAdminCreat\",\"sourceType\":\"PC\"},\"passportId\":\"\",\"schoolInService\":\"北京大学\",\"beGoodAtTeachingTypes\":[\"1|146|147\",\"1|146|148\",\"1|146|149\",\"1|146|150\",\"1|146|151\",\"1|146|954\",\"1|500|563\",\"1|501|507\",\"1|501|508\",\"1|924|925\"],\"level\":1}},\"query\":\"mutation updateTeacher($input: UpdateTeacherInput) {\\n  updateTeacher(input: $input) {\\n    code\\n    msg\\n    teacher {\\n      id\\n      uuid\\n      teacherId\\n      __typename\\n    }\\n    __typename\\n  }\\n}\\n\"}"
     dicts_p5 = json.loads(p5)
     dicts_p5["variables"]["input"]["teacherId"] = teacherId
-    dicts_p5["variables"]["input"]["firstName"] = fname
-    dicts_p5["variables"]["input"]["lastName"] = lname
+    dicts_p5["variables"]["input"]["firstName"] = first_name
+    dicts_p5["variables"]["input"]["lastName"] = last_name
     p5 = json.dumps(dicts_p5)
-    r5 = s.post(base_url,data=p5,headers=headers)
+    r5 = s.post(base_url, data=p5, headers=headers)
     dicts5 = json.loads(r5.text)
     result5 = dicts5['data']['updateTeacher']['code']
     print(u"老师信息保存结果为:{}".format(result5))
@@ -42,7 +42,7 @@ def addTeacher(email_demo,fname,lname):
     dicts_p6 = json.loads(p6)
     dicts_p6["variables"]["input"]["teacherId"] = teacherId
     p6 = json.dumps(dicts_p6)
-    r6 = s.post(base_url,data=p6,headers=headers)
+    r6 = s.post(base_url, data=p6, headers=headers)
     dicts6 = json.loads(r6.text)
     result6 = dicts6['data']['updateTeacherStatus']['code']
     print(u"老师状态更新结果为:{}".format(result6))
@@ -52,7 +52,7 @@ def addTeacher(email_demo,fname,lname):
     dicts_p1 = json.loads(p1)
     dicts_p1["variables"]["input"]["teacherId"] = teacherId
     p1 = json.dumps(dicts_p1)
-    r1 = s.post(base_url,data=p1,headers=headers)
+    r1 = s.post(base_url, data=p1, headers=headers)
     dicts1 = json.loads(r1.text)
     _id = dicts1['data']['createTeacherServiceAgreement']['affectedIds'][0]
     print(u"创建合约ID为:{}".format(_id))
@@ -61,8 +61,8 @@ def addTeacher(email_demo,fname,lname):
     client = pymongo.MongoClient("mongodb://10.68.100.54:27017/")
     db = client["recruit"]
     col_se = db["serviceagreements"]
-    myquery = {"_id" : ObjectId(_id)}
-    newvalues = {"$set": {"status" : 1}}
+    myquery = {"_id": ObjectId(_id)}
+    newvalues = {"$set": {"status": 1}}
     col_se.update_one(myquery, newvalues)
 
     # "创建薪资"
@@ -89,6 +89,12 @@ def addTeacher(email_demo,fname,lname):
     print(u"创建合约ID:{}的授课时间ID:{}".format(_id, _tmid))
 
 
+if __name__ == '__main__':
+    num = 129
+    email = "uat"+ str(num) + "@qq.com"
+    print(email)
+    for i in range(3):
+        add_teacher(email_demo=email, first_name="uat"+str(num), last_name="test")
+        num += 1
 
-addTeacher(email_demo="uat016@qq.com",fname="uat016",lname="test")
 

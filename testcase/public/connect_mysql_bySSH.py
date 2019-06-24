@@ -2,9 +2,7 @@
 import pymysql.cursors
 from sshtunnel import SSHTunnelForwarder
 
-
-
-def conmysql(sql):
+def connect_mysql(sql):
     server = SSHTunnelForwarder(
         ssh_address_or_host=('10.68.100.137', 22),
         ssh_password='password',
@@ -26,19 +24,30 @@ def conmysql(sql):
             data = cursor.fetchone()
             return data
 
-    except Exception as e:
-        print(e)
+    except Exception as something_wrong:
+        print(something_wrong)
     finally:
         conn.close()
 
+def connect_mysql_qa(sql):
 
-# def conmongodb(data):
-#     client = pymongo.MongoClient(host='10.68.100.54', port=27017)
-#     db = client.recruit
-#     collection1 = db.teachers
-#     collection1.del({"email":data})
-#     collection2 = db.remuses
-#     collection2.remobe({"email":data})
+    conn = pymysql.connect(
+        host='rm-bp15do63ws7rs648qvo.mysql.rds.aliyuncs.com',
+        port=3306,
+        user='qa',
+        passwd='qa@UUabc',
+        db='sso')
+    try:
+        with conn.cursor() as cursor:
+            cursor.execute(sql)
+            conn.commit()
+            data = cursor.fetchone()
+            return data
+
+    except Exception as something_wrong:
+        print(something_wrong)
+    finally:
+        conn.close()
 
 
 
