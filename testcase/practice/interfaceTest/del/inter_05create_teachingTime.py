@@ -9,7 +9,6 @@ from bsons.objectid import ObjectId
 
 class CreatTime(unittest.TestCase):
     def setUp(self):
-        # 取测试帐号20480的合约ID
         client = pymongo.MongoClient("mongodb://10.68.100.54:27017/")
         db = client["recruit"]
         col_se = db["serviceagreements"]
@@ -31,19 +30,18 @@ class CreatTime(unittest.TestCase):
         s = requests.session()
         r = s.post(self.base_url, data=self.playload, headers=self.headers)
         self.dicts = json.loads(r.text)
-        print(self.dicts)
         self.assertEqual(self.dicts['data']['createTeacherWorkingTimeAgreements']['resultCode'], 'Success')
+
 
     def tearDown(self):
         client = pymongo.MongoClient("mongodb://10.68.100.54:27017/")
         db = client["recruit"]
         col_tm = db["workingtimeagreements"]
         self._tmid = str(col_tm.find_one({"teacherId": "20480"})['_id'])
-        print(self._tmid)
+        print(u"创建合约ID:{}的授课时间ID为:{}".format(self._id, self._tmid))
         col_tm.delete_one({"_id": ObjectId(self._tmid)})
-        print(u"删除合约ID:{}的授课时间ID:{}".format(self._id, self._tmid))
-        client = pymongo.MongoClient("mongodb://10.68.100.54:27017/")
-        db = client["recruit"]
+        print(u"删除授课时间ID:{}".format(self._tmid))
+
         col_se = db["serviceagreements"]
         col_se.delete_one({"_id":ObjectId(self._id)})
         print(u"删除合约ID:{}".format(self._id))

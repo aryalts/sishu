@@ -17,17 +17,13 @@ def connect_mysql(sql):
         user='dba_admin',
         passwd='Dba.net2018',
         db='sso')
-    try:
-        with conn.cursor() as cursor:
-            cursor.execute(sql)
-            conn.commit()
-            data = cursor.fetchone()
-            return data
 
-    except Exception as something_wrong:
-        print(something_wrong)
-    finally:
-        conn.close()
+    with conn.cursor() as cursor:
+        cursor.execute(sql)
+        conn.commit()
+        data = cursor.fetchone()
+        return data
+
 
 def connect_mysql_qa(sql):
 

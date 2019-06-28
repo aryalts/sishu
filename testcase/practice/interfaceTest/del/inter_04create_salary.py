@@ -9,7 +9,6 @@ from bsons.objectid import ObjectId
 
 class CreatSalary(unittest.TestCase):
     def setUp(self):
-        # 取测试帐号20480的合约ID
         client = pymongo.MongoClient("mongodb://10.68.100.54:27017/")
         db = client["recruit"]
         col_se = db["serviceagreements"]
@@ -32,14 +31,16 @@ class CreatSalary(unittest.TestCase):
         r = s.post(self.base_url, data=self.playload, headers=self.headers)
         self.dicts = json.loads(r.text)
         self.assertEqual(self.dicts['data']['createTeacherSalaryAgreement']['resultCode'], 'Success')
+        self._said = self.dicts['data']['createTeacherSalaryAgreement']['affectedIds'][0]
+        print(u"创建合约:{}的薪资ID为:{}".format(self._id, self._said))
+
 
     def tearDown(self):
         client = pymongo.MongoClient("mongodb://10.68.100.54:27017/")
         db = client["recruit"]
         col_sa = db["salaryagreements"]
-        self._said = self.dicts['data']['createTeacherSalaryAgreement']['affectedIds'][0]
         col_sa.delete_one({"_id": ObjectId(self._said)})
-        print(u"删除合约ID:{}的薪资ID:{}".format(self._id, self._said))
+        print(u"删除薪资ID:{}".format(self._said))
 
 
 if __name__ == '__main__':

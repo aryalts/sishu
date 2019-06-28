@@ -32,10 +32,12 @@ class CreatService(unittest.TestCase):
         r = s.post(self.base_url, data=self.playload, headers=self.headers)
         self.dicts = json.loads(r.text)
         self.assertEqual(self.dicts['data']['createTeacherServiceAgreement']['resultCode'], 'Success')
-
-    def tearDown(self):
         self._id = self.dicts['data']['createTeacherServiceAgreement']['affectedIds'][0]
         print(u"创建合约ID为:{}".format(self._id))
+
+    def tearDown(self):
+        pass
+
 
 
 if __name__ == '__main__':

@@ -7,33 +7,32 @@ from public.connect_mysql_bySSH import *
 import pymongo
 
 
-class CreateTeacherByKol(unittest.TestCase):
+class CreateResumeByKol(unittest.TestCase):
     def setUp(self):
         self.base_url = "https://uat-svc.51uuabc.com/api/graphql"
         # self.base_url = "https://qasvc.uuabc.com/api/graphql"
         self.headers = {
             'content-type': "application/json",
             # 'authorization': "Bearer qNjDK9bNC-yfPh-arO8cmu_uaTq8BoZR0iXjIh0l8bl4rVXtx46OdYjUohDKWTq1C3-PPQ3pNk10o8ku-pVoBg",
-            'authorization':"Bearer qKtJRHw_WXLcVYjtujQ3hc4EA6KedOWELtZIo8EnIf43_ZBmqy6ytQQj4NtbgoWgC3-PPQ3pNk10o8ku-pVoBg",
+            'authorization':"Bearer 4eqd5pEHf8FdpOnc500XVE-QEAaq4p99uE3wr1wM61djXqM1RRrPAm3QYu6-sEQVC3-PPQ3pNk10o8ku-pVoBg",
             'cache-control': "no-cache",
         }
-        self.data = "{\"operationName\":\"addKolResume\",\"variables\":{\"input\":{\"firstName\":\"uat01\",\"lastName\":\"test\",\"gender\":\"Male\",\"nationality\":\"United States\",\"educationBackground\":\"Master\",\"isNativeSpeaker\":true,\"email\":\"uat01@qq.com\",\"teachingExperience\":[{\"name\":\"Online\",\"months\":24},{\"name\":\"Offline\",\"months\":12}],\"selfIntroduction\":{\"text\":[{\"name\":\"short\",\"lang\":\"EN\",\"text\":\"work experience\"}]},\"curriculumVitae\":[{\"name\":\"attach2016.doc\",\"url\":\"https://uutest2.uuabc.com/vitae/1559715670509\",\"sourceType\":\"PC\"}],\"teachingCertificateTypes\":[{\"key\":\"CELTA\",\"value\":\"CELTA\"},{\"key\":\"TKT\",\"value\":\"TKT\"},{\"key\":\"TEFL_TESOL_TESL\",\"value\":\"TEFL_TESOL_TESL\"},{\"key\":\"State\",\"value\":\"SEC\"},{\"key\":\"Others\",\"value\":\"O\"}]}},\"query\":\"mutation addKolResume($input: AddKolResumeInput!) {\\n  addKolResume(input: $input) {\\n    code\\n    msg\\n    resumeId\\n    __typename\\n  }\\n}\\n\"}\r\n"
-        # self.data = "{\"operationName\":\"addKolResume\",\"variables\":{\"input\":{\"firstName\":\"qa83\",\"lastName\":\"test\",\"gender\":\"Male\",\"nationality\":\"United States\",\"educationBackground\":\"Master\",\"isNativeSpeaker\":true,\"email\":\"qa83@qq.com\",\"teachingExperience\":[{\"name\":\"Online\",\"months\":0},{\"name\":\"Offline\",\"months\":0}],\"selfIntroduction\":{\"text\":[{\"name\":\"short\",\"lang\":\"EN\",\"text\":\"123\"}]},\"curriculumVitae\":[{\"name\":\"2016.doc\",\"url\":\"https://uutest2.uuabc.com/vitae/1561099584373\",\"sourceType\":\"PC\"}]}},\"query\":\"mutation addKolResume($input: AddKolResumeInput!) {\\n  addKolResume(input: $input) {\\n    code\\n    msg\\n    resumeId\\n    __typename\\n  }\\n}\\n\"}"
-    def test_01(self):
-        u"""KOL创建老师"""
-        s = requests.session()
-        r = s.post(self.base_url, data=self.data, headers=self.headers)
+        self.s = requests.session()
 
+
+    def test_01(self):
+        u"""KOL创建简历"""
+        addKolResume = "{\"operationName\":\"addKolResume\",\"variables\":{\"input\":{\"firstName\":\"uat01\",\"lastName\":\"test\",\"gender\":\"Male\",\"nationality\":\"United States\",\"educationBackground\":\"Bachelor\",\"isNativeSpeaker\":true,\"email\":\"uat01@qq.com\",\"teachingExperience\":[{\"name\":\"Online\",\"months\":24},{\"name\":\"Offline\",\"months\":12}],\"selfIntroduction\":{\"text\":[{\"name\":\"short\",\"lang\":\"EN\",\"text\":\"123\"}]},\"curriculumVitae\":[{\"name\":\"2016.doc\",\"url\":\"https://uutest2.uuabc.com/vitae/1561709429805\",\"sourceType\":\"PC\"}],\"teachingCertificateTypes\":[{\"key\":\"CELTA\",\"value\":\"CELTA\"}]}},\"query\":\"mutation addKolResume($input: AddKolResumeInput!) {\\n  addKolResume(input: $input) {\\n    code\\n    msg\\n    resumeId\\n    __typename\\n  }\\n}\\n\"}"
+        addKolResume_result = self.s.post(self.base_url, data=addKolResume, headers=self.headers)
         # json字符串解码成python格式数据
-        dicts = json.loads(r.text)
-        print(dicts)
+        dicts_addKolResume_result = json.loads(addKolResume_result.text)
         # 对比返回值
         try:
-            self.assertEqual(dicts['data']['addKolResume']['code'], 'OK')
+            self.assertEqual(dicts_addKolResume_result['data']['addKolResume']['code'], 'OK')
         except AssertionError:
             raise
         else:
-            print("KOL创建老师成功")
+            print("KOL创建老师简历成功")
 
 
     def tearDown(self):
@@ -42,11 +41,8 @@ class CreateTeacherByKol(unittest.TestCase):
         print(sso_data)
         if sso_data is not None:
             self.uuid = sso_data[1]
-            print(self.uuid)
             self.select_user_data = "select * from sishu.bk_user where uuid = {} ".format(self.uuid)
             user_data = connect_mysql(self.select_user_data)
-            print(user_data)
-
             self.uid = user_data[0]
             self.delete_user_data = 'delete from sishu.bk_user where uid ={}'.format(self.uid)
             connect_mysql(self.delete_user_data)

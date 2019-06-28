@@ -50,7 +50,7 @@ def send_report(reportdir):
 def creatsuite():
     testunit = unittest.TestSuite()
     test_dir = r'D:\PycharmProjects\sishu\testcase\practice\interfaceTest\\'
-    discover = unittest.defaultTestLoader.discover(test_dir,pattern='inter_creat*.py',top_level_dir=None)
+    discover = unittest.defaultTestLoader.discover(test_dir,pattern='inter_0*.py',top_level_dir=None)
     for test_case in discover:
         testunit.addTests(test_case)
     return testunit
