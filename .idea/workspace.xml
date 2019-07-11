@@ -2,20 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f3199d5b-b21f-4bd9-bba0-59ae3a164382" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/testcase/practice/interfaceTest/del/inter_03create_serverAgreement.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/testcase/practice/interfaceTest/del/inter_04create_salary.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/testcase/practice/interfaceTest/del/inter_05create_teachingTime.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/testcase/practice/interfaceTest/del/inter_addteacher.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/testcase/practice/interfaceTest/del/inter_login.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/testcase/practice/interfaceTest/practise/connectDB.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/testcase/practice/interfaceTest/practise/count.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/testcase/practice/interfaceTest/practise/login01.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/testcase/practice/interfaceTest/practise/maopao.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/testcase/practice/interfaceTest/practise/p1.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/testcase/practice/interfaceTest/practise/p2.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/testcase/practice/interfaceTest/practise/test_sendmail.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/testcase/practice/interfaceTest/practise/testsub.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/testcase/practice/interfaceTest/practise/thread_exercise.py" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/InterFaceTest/public/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/InterFaceTest/public/connect_mysql_bySSH.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testcase/attach/1.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testcase/attach/1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testcase/geckodriver.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testcase/public/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testcase/public/connect_mysql_bySSH.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testcase/public/login.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testcase/test_addteacher.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testcase/test_login.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testcase/test_referral.py" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -27,27 +25,27 @@
     <session id="1838256363">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="9" />
+          <entry key="project.closed" value="10" />
           <entry key="project.open.time.0" value="1" />
-          <entry key="project.open.time.11" value="1" />
+          <entry key="project.open.time.11" value="2" />
           <entry key="project.open.time.12" value="1" />
           <entry key="project.open.time.4" value="3" />
           <entry key="project.open.time.8" value="1" />
           <entry key="project.open.time.9" value="3" />
-          <entry key="project.opened" value="10" />
+          <entry key="project.opened" value="11" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="email" value="1" />
-          <entry key="py" value="106" />
+          <entry key="py" value="108" />
           <entry key="txt" value="8" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="PLAIN_TEXT" value="9" />
-          <entry key="Python" value="106" />
+          <entry key="Python" value="108" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
@@ -68,10 +66,13 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/InterFaceTest/all_inter_test.py">
+        <entry file="file://$PROJECT_DIR$/InterFaceTest/inter_01createTeacherByKol.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="418">
-              <caret line="61" column="50" lean-forward="true" selection-start-line="61" selection-start-column="50" selection-end-line="61" selection-end-column="50" />
+            <state relative-caret-position="323">
+              <caret line="17" column="40" lean-forward="true" selection-start-line="17" selection-start-column="40" selection-end-line="17" selection-end-column="40" />
+              <folding>
+                <element signature="e#22#37#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -188,7 +189,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -204,18 +204,18 @@
             <path>
               <item name="sishu" type="b2602c69:ProjectViewProjectNode" />
               <item name="sishu" type="462c0819:PsiDirectoryNode" />
-              <item name="testcase" type="462c0819:PsiDirectoryNode" />
+              <item name="Practice" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="sishu" type="b2602c69:ProjectViewProjectNode" />
               <item name="sishu" type="462c0819:PsiDirectoryNode" />
-              <item name="testcase" type="462c0819:PsiDirectoryNode" />
-              <item name="practice" type="462c0819:PsiDirectoryNode" />
+              <item name="UITest" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -223,16 +223,16 @@
     <property name="settings.editor.selected.configurable" value="vcs.Git" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\PycharmProjects\sishu\testcase\practice\interfaceTest\del" />
-      <recent name="D:\PycharmProjects\sishu\testcase\practice\interfaceTest" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\PycharmProjects\sishu\UITest" />
       <recent name="D:\PycharmProjects\sishu\testcase\practice\interfaceTest" />
       <recent name="D:\PycharmProjects\sishu\testcase\practice\interfaceTest\practise" />
       <recent name="D:\PycharmProjects\sishu\testcase\practice\interfaceTest\del" />
       <recent name="D:\PycharmProjects\sishu\testcase" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\PycharmProjects\sishu\testcase\practice\interfaceTest\del" />
+      <recent name="D:\PycharmProjects\sishu\testcase\practice\interfaceTest" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -454,7 +454,35 @@
       <option name="project" value="LOCAL" />
       <updated>1562839272354</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="修改接口测试目录结构">
+      <created>1562840444128</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1562840444128</updated>
+    </task>
+    <task id="LOCAL-00003" summary="修改接口测试目录结构">
+      <created>1562840521373</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1562840521373</updated>
+    </task>
+    <task id="LOCAL-00004" summary="修改接口测试目录结构">
+      <created>1562840536034</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1562840536034</updated>
+    </task>
+    <task id="LOCAL-00005" summary="修改接口测试目录结构">
+      <created>1562840628803</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1562840628803</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -492,19 +520,19 @@
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25171143" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25171143" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32937366" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32937366" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4997367" visible="true" weight="0.32937366" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39956802" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Version Control" order="7" visible="true" weight="0.32937366" />
+      <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.49921012" weight="0.32937366" />
       <window_info anchor="bottom" id="Terminal" order="8" />
-      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5002633" side_tool="true" visible="true" weight="0.32937366" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.32937366" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -614,7 +642,20 @@
     <entry file="file://$PROJECT_DIR$/InterFaceTest/all_inter_test.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="418">
-          <caret line="61" column="50" lean-forward="true" selection-start-line="61" selection-start-column="50" selection-end-line="61" selection-end-column="50" />
+          <caret line="61" column="50" selection-start-line="61" selection-start-column="50" selection-end-line="61" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/InterFaceTest/public/login.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/InterFaceTest/inter_01createTeacherByKol.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="17" column="40" lean-forward="true" selection-start-line="17" selection-start-column="40" selection-end-line="17" selection-end-column="40" />
+          <folding>
+            <element signature="e#22#37#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
