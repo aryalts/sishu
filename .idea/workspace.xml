@@ -2,38 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f3199d5b-b21f-4bd9-bba0-59ae3a164382" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/all_test.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/geckodriver.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/2019-04-11 17_46_03result.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/2019-04-11 19_05_39result.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/2019-04-11 19_14_33result.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/2019-04-12 10_41_46result.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/2019-04-12 10_58_25result.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/2019-04-12 16_34_43result.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/2019-04-12 16_55_39result.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/2019-04-16 11_19_35result.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/testcase/practice/interfaceTest/Function/inter_03Create_Contract.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/testcase/practice/interfaceTest/Function/inter_04Create_Salary.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/testcase/practice/interfaceTest/Function/inter_05Create_TeachingTime.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/testcase/practice/interfaceTest/Function/inter_login.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/testcase/practice/interfaceTest/Process/connectDB.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/testcase/practice/interfaceTest/Process/count.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/testcase/practice/interfaceTest/Process/login01.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/testcase/practice/interfaceTest/Process/maopao.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/testcase/practice/interfaceTest/Process/p1.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/testcase/practice/interfaceTest/Process/p2.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/testcase/practice/interfaceTest/Process/test_sendmail.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/testcase/practice/interfaceTest/Process/testsub.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/testcase/practice/interfaceTest/Process/thread_exercise.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/testcase/practice/interfaceTest/all_inter_test.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/testcase/practice/interfaceTest/inter_01createTeacherByKol.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/testcase/practice/interfaceTest/inter_02createTeacherByReg_Directly.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/testcase/practice/interfaceTest/inter_03createTeacherByReg_WithReferralCode.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/testcase/practice/interfaceTest/inter_addteacher.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/testdate/email.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/testdate/referral_info.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/testdate/userinfo.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testcase/practice/interfaceTest/del/inter_03create_serverAgreement.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testcase/practice/interfaceTest/del/inter_04create_salary.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testcase/practice/interfaceTest/del/inter_05create_teachingTime.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testcase/practice/interfaceTest/del/inter_addteacher.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testcase/practice/interfaceTest/del/inter_login.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testcase/practice/interfaceTest/practise/connectDB.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testcase/practice/interfaceTest/practise/count.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testcase/practice/interfaceTest/practise/login01.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testcase/practice/interfaceTest/practise/maopao.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testcase/practice/interfaceTest/practise/p1.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testcase/practice/interfaceTest/practise/p2.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testcase/practice/interfaceTest/practise/test_sendmail.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testcase/practice/interfaceTest/practise/testsub.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testcase/practice/interfaceTest/practise/thread_exercise.py" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -72,12 +54,12 @@
         <counts>
           <entry key="dummy" value="262" />
           <entry key="py" value="17969" />
-          <entry key="txt" value="45" />
+          <entry key="txt" value="58" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="PLAIN_TEXT" value="307" />
+          <entry key="PLAIN_TEXT" value="320" />
           <entry key="Python" value="17969" />
         </counts>
       </usages-collector>
@@ -218,12 +200,6 @@
               <item name="sishu" type="b2602c69:ProjectViewProjectNode" />
               <item name="sishu" type="462c0819:PsiDirectoryNode" />
               <item name="InterFaceTest" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sishu" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sishu" type="462c0819:PsiDirectoryNode" />
-              <item name="InterFaceTest" type="462c0819:PsiDirectoryNode" />
-              <item name="Function" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="sishu" type="b2602c69:ProjectViewProjectNode" />
@@ -471,6 +447,14 @@
       <option name="presentableId" value="Default" />
       <updated>1554888232345</updated>
     </task>
+    <task id="LOCAL-00001" summary="修改接口测试目录结构">
+      <created>1562839272354</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1562839272354</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -506,8 +490,7 @@
     </history-entry>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25171143" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -530,6 +513,10 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="修改接口测试目录结构" />
+    <option name="LAST_COMMIT_MESSAGE" value="修改接口测试目录结构" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
