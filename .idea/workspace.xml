@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f3199d5b-b21f-4bd9-bba0-59ae3a164382" name="Default Changelist" comment="修改接口测试目录结构">
-      <change afterPath="$PROJECT_DIR$/.idea/sishu.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/InterFaceTest/all_inter_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/InterFaceTest/report/all_inter_test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/InterFaceTest/report/2019-07-12 14_03_29 report.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/InterFaceTest/testCase/public/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/InterFaceTest/testCase/public/connect_mysql_bySSH.py" beforeDir="false" />
-    </list>
+    <list default="true" id="f3199d5b-b21f-4bd9-bba0-59ae3a164382" name="Default Changelist" comment="修改接口测试目录结构" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -206,7 +199,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="75" />
     <option name="y" value="27" />
     <option name="width" value="1400" />
@@ -247,14 +240,6 @@
               <item name="InterFaceTest" type="462c0819:PsiDirectoryNode" />
               <item name="testCase" type="462c0819:PsiDirectoryNode" />
               <item name="process" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sishu" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sishu" type="462c0819:PsiDirectoryNode" />
-              <item name="InterFaceTest" type="462c0819:PsiDirectoryNode" />
-              <item name="testCase" type="462c0819:PsiDirectoryNode" />
-              <item name="process" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -598,7 +583,21 @@
       <option name="project" value="LOCAL" />
       <updated>1562899024755</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="修改接口测试目录结构">
+      <created>1562919334188</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1562919334188</updated>
+    </task>
+    <task id="LOCAL-00017" summary="修改接口测试目录结构">
+      <created>1562919438006</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1562919438006</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -634,22 +633,21 @@
     </history-entry>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25171143" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32937366" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49921012" visible="true" weight="0.32937366" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4986835" visible="true" weight="0.32937366" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39956802" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.4986835" weight="0.32937366" />
       <window_info anchor="bottom" id="Terminal" order="8" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5007899" side_tool="true" weight="0.32937366" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5013165" side_tool="true" visible="true" weight="0.32937366" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.32937366" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
