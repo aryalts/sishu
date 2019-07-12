@@ -36,6 +36,7 @@ class CreateTeacherByReg(unittest.TestCase):
         addAccount = json.dumps(dicts_addAccount)
         addAccount_result = self.s.post(self.base_url, data=addAccount, headers=self.headers)
         dicts_addAccount_result = json.loads(addAccount_result.text)
+        print(dicts_addAccount_result)
         globals()["teacherId"] = dicts_addAccount_result['data']['addAccount']['teacherId']
         resumeToken = dicts_addAccount_result['data']['addAccount']['token']
 
