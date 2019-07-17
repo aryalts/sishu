@@ -3,6 +3,8 @@ import unittest
 import HTMLTestRunner
 import requests
 import json
+import sys
+sys.path.append(r"D:\PycharmProjects\sishu\InterFaceTest\testCase\process\public\connect_mysql_bySSH.py")
 from public.connect_mysql_bySSH import *
 import pymongo
 

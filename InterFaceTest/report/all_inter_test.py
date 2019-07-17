@@ -49,17 +49,17 @@ def send_report(report_dir):
 
 def creat_suite():
     test_unit = unittest.TestSuite()
-    test_dir = r'D:\PycharmProjects\sishu\InterFaceTest\testCase\process\\'
-    discover = unittest.defaultTestLoader.discover(test_dir,pattern='inter_0*.py',top_level_dir=None)
+    test_dir = r'D:\PycharmProjects\sishu\InterFaceTest\testCase\function\\'
+    discover = unittest.defaultTestLoader.discover(test_dir,pattern='inter_01*.py',top_level_dir=None)
     for test_case in discover:
         test_unit.addTests(test_case)
     return test_unit
 
 
 if __name__ == '__main__':
-    now = time.strftime("%Y-%m-%d %H_%M_%S")
+    now = time.strftime("%Y-%m-%d %H-%M")
     report_dir = r'D:\PycharmProjects\sishu\InterFaceTest\report\\'
-    report = report_dir + now + ' ' + 'report.html'
+    report = report_dir + now + ' ' + u'接口测试.html'
     fp = open(report, 'wb')
     runner = HTMLTestRunner.HTMLTestRunner(stream=fp, title=u'自动化测试报告', description=u'用例执行情况：')
     runner.run(creat_suite())

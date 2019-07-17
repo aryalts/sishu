@@ -48,7 +48,7 @@ def add_teacher(email_demo, first_name, last_name):
     print(u"老师状态更新结果为:{}".format(result6))
 
     # 创建合约
-    p1 = "{\"operationName\":\"createTeacherServiceAgreement\",\"variables\":{\"input\":{\"teacherId\":\"\",\"signedType\":\"Parttime\",\"effectiveStartTime\":1559318400000,\"effectiveEndTime\":1561910399000,\"status\":\"Pending\",\"enabled\":\"Enabled\",\"currency\":\"USD\"}},\"query\":\"mutation createTeacherServiceAgreement($input: CreateTeacherServiceAgreementInput!) {\\n  createTeacherServiceAgreement(input: $input) {\\n    code\\n    msg\\n    resultCode\\n    affectedIds\\n    __typename\\n  }\\n}\\n\"}"
+    p1 = "{\"operationName\":\"createTeacherServiceAgreement\",\"variables\":{\"input\":{\"teacherId\":\"\",\"signedType\":\"Parttime\",\"effectiveStartTime\":1559318400000,\"effectiveEndTime\":1594796449000,\"status\":\"Pending\",\"enabled\":\"Enabled\",\"currency\":\"USD\"}},\"query\":\"mutation createTeacherServiceAgreement($input: CreateTeacherServiceAgreementInput!) {\\n  createTeacherServiceAgreement(input: $input) {\\n    code\\n    msg\\n    resultCode\\n    affectedIds\\n    __typename\\n  }\\n}\\n\"}"
     dicts_p1 = json.loads(p1)
     dicts_p1["variables"]["input"]["teacherId"] = teacherId
     p1 = json.dumps(dicts_p1)
@@ -66,7 +66,7 @@ def add_teacher(email_demo, first_name, last_name):
     col_se.update_one(myquery, newvalues)
 
     # "创建薪资"
-    p2 = "{\"operationName\":\"createTeacherSalaryAgreement\",\"variables\":{\"input\":{\"serviceAgreementId\":\"\",\"teacherId\":\"\",\"effectiveStartTime\":1559318400000,\"effectiveEndTime\":1561910399000,\"one2one\":0,\"smallClass\":0,\"live\":0,\"absenteeism\":0,\"openCourse\":0,\"wait\":0,\"subsidy\":0}},\"query\":\"mutation createTeacherSalaryAgreement($input: CreateTeacherSalaryAgreementInput) {\\n  createTeacherSalaryAgreement(input: $input) {\\n    code\\n    msg\\n    resultCode\\n    affectedIds\\n    __typename\\n  }\\n}\\n\"}"
+    p2 = "{\"operationName\":\"createTeacherSalaryAgreement\",\"variables\":{\"input\":{\"serviceAgreementId\":\"\",\"teacherId\":\"\",\"effectiveStartTime\":1559318400000,\"effectiveEndTime\":1594796449000,\"one2one\":0,\"smallClass\":0,\"live\":0,\"absenteeism\":0,\"openCourse\":0,\"wait\":0,\"subsidy\":0}},\"query\":\"mutation createTeacherSalaryAgreement($input: CreateTeacherSalaryAgreementInput) {\\n  createTeacherSalaryAgreement(input: $input) {\\n    code\\n    msg\\n    resultCode\\n    affectedIds\\n    __typename\\n  }\\n}\\n\"}"
     dicts_p2 = json.loads(p2)
     dicts_p2["variables"]["input"]["serviceAgreementId"] = _id
     dicts_p2["variables"]["input"]["teacherId"] = teacherId
@@ -77,10 +77,31 @@ def add_teacher(email_demo, first_name, last_name):
     print(u"创建合约ID:{}的薪资ID:{}".format(_id, _said))
 
     # "创建授课时间"
-    p3 = "{\"operationName\":\"createTeacherWorkingTimeAgreements\",\"variables\":{\"input\":{\"list\":[{\"serviceAgreementId\":\"\",\"teacherId\":\"\",\"effectiveStartTime\":1559318400000,\"effectiveEndTime\":1561910399000,\"weekday\":\"Monday\",\"startTime\":\"09:05\",\"endTime\":\"09:35\"}]}},\"query\":\"mutation createTeacherWorkingTimeAgreements($input: CreateTeacherWorkingTimeAgreementInput!) {\\n  createTeacherWorkingTimeAgreements(input: $input) {\\n    code\\n    msg\\n    resultCode\\n    __typename\\n  }\\n}\\n\"}"
+    p3 = "{\"operationName\":\"createTeacherWorkingTimeAgreements\",\"variables\":{\"input\":{\"list\":[{\"serviceAgreementId\":\"\",\"teacherId\":\"\",\"effectiveStartTime\":1561910400000,\"effectiveEndTime\":1564588799000,\"weekday\":\"Monday\",\"startTime\":\"09:05\",\"endTime\":\"21:50\"},{\"serviceAgreementId\":\"\",\"teacherId\":\"\",\"effectiveStartTime\":1561910400000,\"effectiveEndTime\":1564588799000,\"weekday\":\"Tuesday\",\"startTime\":\"09:05\",\"endTime\":\"21:50\"},{\"serviceAgreementId\":\"\",\"teacherId\":\"\",\"effectiveStartTime\":1561910400000,\"effectiveEndTime\":1564588799000,\"weekday\":\"Wednesday\",\"startTime\":\"09:05\",\"endTime\":\"21:50\"},{\"serviceAgreementId\":\"\",\"teacherId\":\"\",\"effectiveStartTime\":1561910400000,\"effectiveEndTime\":1564588799000,\"weekday\":\"Thursday\",\"startTime\":\"09:05\",\"endTime\":\"21:50\"},{\"serviceAgreementId\":\"\",\"teacherId\":\"\",\"effectiveStartTime\":1561910400000,\"effectiveEndTime\":1564588799000,\"weekday\":\"Friday\",\"startTime\":\"09:05\",\"endTime\":\"21:50\"},{\"serviceAgreementId\":\"\",\"teacherId\":\"\",\"effectiveStartTime\":1561910400000,\"effectiveEndTime\":1564588799000,\"weekday\":\"Saturday\",\"startTime\":\"09:05\",\"endTime\":\"21:50\"},{\"serviceAgreementId\":\"\",\"teacherId\":\"\",\"effectiveStartTime\":1561910400000,\"effectiveEndTime\":1564588799000,\"weekday\":\"Sunday\",\"startTime\":\"09:05\",\"endTime\":\"21:50\"}]}},\"query\":\"mutation createTeacherWorkingTimeAgreements($input: CreateTeacherWorkingTimeAgreementInput!) {\\n  createTeacherWorkingTimeAgreements(input: $input) {\\n    code\\n    msg\\n    resultCode\\n    __typename\\n  }\\n}\\n\"}"
+
+    # p3 = "{\"operationName\":\"createTeacherWorkingTimeAgreements\",\"variables\":{\"input\":{\"list\":[{\"serviceAgreementId\":\"\",\"teacherId\":\"\",\"effectiveStartTime\":1559318400000,\"effectiveEndTime\":1594796449000,\"weekday\":\"Monday\",\"startTime\":\"09:05\",\"endTime\":\"21:15\"}]}},\"query\":\"mutation createTeacherWorkingTimeAgreements($input: CreateTeacherWorkingTimeAgreementInput!) {\\n  createTeacherWorkingTimeAgreements(input: $input) {\\n    code\\n    msg\\n    resultCode\\n    __typename\\n  }\\n}\\n\"}"
     dicts_p3 = json.loads(p3)
     dicts_p3["variables"]["input"]["list"][0]["serviceAgreementId"] = _id
     dicts_p3["variables"]["input"]["list"][0]["teacherId"] = teacherId
+
+    dicts_p3["variables"]["input"]["list"][1]["serviceAgreementId"] = _id
+    dicts_p3["variables"]["input"]["list"][1]["teacherId"] = teacherId
+
+    dicts_p3["variables"]["input"]["list"][2]["serviceAgreementId"] = _id
+    dicts_p3["variables"]["input"]["list"][2]["teacherId"] = teacherId
+
+    dicts_p3["variables"]["input"]["list"][3]["serviceAgreementId"] = _id
+    dicts_p3["variables"]["input"]["list"][3]["teacherId"] = teacherId
+
+    dicts_p3["variables"]["input"]["list"][4]["serviceAgreementId"] = _id
+    dicts_p3["variables"]["input"]["list"][4]["teacherId"] = teacherId
+
+    dicts_p3["variables"]["input"]["list"][5]["serviceAgreementId"] = _id
+    dicts_p3["variables"]["input"]["list"][5]["teacherId"] = teacherId
+
+    dicts_p3["variables"]["input"]["list"][6]["serviceAgreementId"] = _id
+    dicts_p3["variables"]["input"]["list"][6]["teacherId"] = teacherId
+
     p3 = json.dumps(dicts_p3)
     s.post(base_url, data=p3, headers=headers)
     col_tm = db["workingtimeagreements"]
@@ -89,12 +110,13 @@ def add_teacher(email_demo, first_name, last_name):
     print(u"创建合约ID:{}的授课时间ID:{}".format(_id, _tmid))
 
 
+
 if __name__ == '__main__':
-    num = 156
-    for i in range(20):
+    num = 600
+    for i in range(50):
         email = "uat" + str(num) + "@qq.com"
         add_teacher(email_demo=email, first_name="uat"+str(num), last_name="test")
         num += 1
-        print(num)
+
 
 

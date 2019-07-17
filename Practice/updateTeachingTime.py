@@ -1,19 +1,40 @@
 # -*- coding:utf8 -*-
 
-"""企业发放的奖金根据利润提成。
-利润(I)低于或等于10万元时，奖金可提10%；
-利润高于10万元，低于20万元时，低于10万元的部分按10%提成，高于10万元的部分，可提成7.5%；
-20万到40万之间时，高于20万元的部分，可提成5%；
-40万到60万之间时高于40万元的部分，可提成3%；
-60万到100万之间时，高于60万元的部分，可提成1.5%，
-高于100万元时，超过100万元的部分按1%提成，从键盘输入当月利润I，求应发放奖金总数？"""
+import requests
+import json
+import pymongo
 
-i = int(input("当月利润为："))
-arr = [1000000,600000,400000,200000,100000,0]
-per = [0.01,0.15,0.03,0.05,0.75,0.1]
-r = 0
-for idx in range(6):
-    if i > arr[idx]:
-        r += (i - arr[idx]) * per[idx]
-        i = arr[idx]
-print(r)
+def updateTeachingTime(teacherId,blockId):
+    base_url = 'https://uat-svc.51uuabc.com/api/graphql'
+    headers = {
+        "authorization": "Bearer h05bPDXRUYaAuw5U1QSkwvdaq0sUmUqqPV63in2yOVI8YIirtbY2UJO_RKgTcRzys_lHUYtbKO_ILMV6YP67VQ",
+        "content-type": "application/json",
+        "Origin": "https://uat-teacher.51uuabc.com",
+        "Referer": "https://uat-teacher.51uuabc.com/admin/teacher/",
+        "User-Agent": "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36"
+    }
+
+    s = requests.session()
+    updateTeachingTime = "{\"operationName\":\"updateWorkingTimeEffectiveDateRangeForBlock\",\"variables\":{\"input\":{\"blockId\":\"\",\"teacherId\":\"\",\"effectiveStartTime\":1561910400000,\"effectiveEndTime\":1577807999000}},\"query\":\"mutation updateWorkingTimeEffectiveDateRangeForBlock($input: UpdateWorkingTimeEffectiveDateRangeForBlockInput!) {\\n  updateWorkingTimeEffectiveDateRangeForBlock(input: $input) {\\n    code\\n    msg\\n    resultCode\\n    successData {\\n      blockId\\n      weekday\\n      startTime\\n      endTime\\n      reason\\n      __typename\\n    }\\n    failedData {\\n      blockId\\n      reason\\n      __typename\\n    }\\n    __typename\\n  }\\n}\\n\"}"
+    dic_updateTeachingTime = json.loads(updateTeachingTime)
+    dic_updateTeachingTime["variables"]["input"]["blockId"] = blockId
+    dic_updateTeachingTime["variables"]["input"]["teacherId"] = teacherId
+    updateTeachingTime = json.dumps(dic_updateTeachingTime)
+    updateTeachingTime_result = s.post(base_url,data=updateTeachingTime,headers=headers)
+    print(updateTeachingTime_result.text)
+
+
+
+if __name__ == '__main__':
+    client = pymongo.MongoClient("mongodb://10.68.100.54:27017/")
+    db = client["recruit"]
+    col_time = db["workingtimeagreements"]
+
+
+    for i in range(30298,30343):
+        teacherId = str(i)
+
+        blockId = col_time.find_one({"teacherId":teacherId})["blockId"]
+
+        updateTeachingTime(teacherId,blockId)
+    client.close()
