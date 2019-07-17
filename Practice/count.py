@@ -1,13 +1,11 @@
-# 计算器类
-class Count:
-    def __init__(self, a, b):
-        self.a = a
-        self.b = b
+import pymongo
 
-
-# 计算加法
-    def add(self):
-        return self.a + self.b
+client = pymongo.MongoClient("mongodb://10.68.100.54:27017/")
+db = client["recruit"]
+col_teachers = db['teachers']
+auditStatus = col_teachers.find_one({"email" : "uat01@qq.com"})["auditStatus"]["status"]
+print(auditStatus)
+print(col_teachers.find_one({"email" : "uat01@qq.com"}))
 
 
 
