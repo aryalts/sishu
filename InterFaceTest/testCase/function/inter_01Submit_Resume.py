@@ -30,15 +30,23 @@ class CreateTeacherByReg(unittest.TestCase):
         code = col_code.find({'email': 'uat01@qq.com'}).sort("gmtCreate", -1)[0]["code"]
 
 
+
         # 注册帐号
         addAccount = "{\"operationName\":\"addAccount\",\"variables\":{\"input\":{\"email\":\"uat01@qq.com\",\"emailVerificationCode\":\"\",\"password\":\"111111\"}},\"query\":\"mutation addAccount($input: AddAccountInput) {\\n  addAccount(input: $input) {\\n    code\\n    teacherId\\n    token\\n    msg\\n    __typename\\n  }\\n}\\n\"}"
         dicts_addAccount = json.loads(addAccount)
         dicts_addAccount["variables"]["input"]["emailVerificationCode"] = code
+
         addAccount = json.dumps(dicts_addAccount)
+
         addAccount_result = self.s.post(self.base_url, data=addAccount, headers=self.headers)
+
+        print(addAccount_result)
         dicts_addAccount_result = json.loads(addAccount_result.text)
+
+        print(dicts_addAccount_result)
         self.teacherId = dicts_addAccount_result['data']['addAccount']['teacherId']
         self.resumeToken = dicts_addAccount_result['data']['addAccount']['token']
+        print(self.resumeToken)
 
 
     def test_01(self):
@@ -68,7 +76,7 @@ class CreateTeacherByReg(unittest.TestCase):
         base_url = "http://uat-svc.51uuabc.com:14495/api/handler/autoSetResumePass"
         self.s.post(base_url,data="",headers=self.headers)
 
-        time.sleep(3)
+        time.sleep(1)
         # 检查老师状态
         col_teachers = self.db['teachers']
         auditStatus = col_teachers.find_one({"email" : "uat01@qq.com"})["auditStatus"]["status"]
@@ -107,7 +115,7 @@ class CreateTeacherByReg(unittest.TestCase):
         base_url = "http://uat-svc.51uuabc.com:14495/api/handler/autoSetResumePass"
         self.s.post(base_url,data="",headers=self.headers)
 
-        time.sleep(3)
+        time.sleep(1)
         # 检查老师状态
         col_teachers = self.db['teachers']
         auditStatus = col_teachers.find_one({"email" : "uat01@qq.com"})["auditStatus"]["status"]
@@ -146,7 +154,7 @@ class CreateTeacherByReg(unittest.TestCase):
         base_url = "http://uat-svc.51uuabc.com:14495/api/handler/autoSetResumePass"
         self.s.post(base_url,data="",headers=self.headers)
 
-        time.sleep(3)
+        time.sleep(1)
         # 检查老师状态
         col_teachers = self.db['teachers']
         auditStatus = col_teachers.find_one({"email" : "uat01@qq.com"})["auditStatus"]["status"]
@@ -186,7 +194,7 @@ class CreateTeacherByReg(unittest.TestCase):
         base_url = "http://uat-svc.51uuabc.com:14495/api/handler/autoSetResumePass"
         self.s.post(base_url,data="",headers=self.headers)
 
-        time.sleep(3)
+        time.sleep(1)
         # 检查老师状态
         col_teachers = self.db['teachers']
         auditStatus = col_teachers.find_one({"email" : "uat01@qq.com"})["auditStatus"]["status"]
@@ -225,7 +233,7 @@ class CreateTeacherByReg(unittest.TestCase):
         base_url = "http://uat-svc.51uuabc.com:14495/api/handler/autoSetResumePass"
         self.s.post(base_url,data="",headers=self.headers)
 
-        time.sleep(3)
+        time.sleep(1)
         # 检查老师状态
         col_teachers = self.db['teachers']
         auditStatus = col_teachers.find_one({"email" : "uat01@qq.com"})["auditStatus"]["status"]
@@ -264,7 +272,7 @@ class CreateTeacherByReg(unittest.TestCase):
         base_url = "http://uat-svc.51uuabc.com:14495/api/handler/autoSetResumePass"
         self.s.post(base_url,data="",headers=self.headers)
 
-        time.sleep(3)
+        time.sleep(1)
         # 检查老师状态
         col_teachers = self.db['teachers']
         auditStatus = col_teachers.find_one({"email" : "uat01@qq.com"})["auditStatus"]["status"]
@@ -304,7 +312,7 @@ class CreateTeacherByReg(unittest.TestCase):
         base_url = "http://uat-svc.51uuabc.com:14495/api/handler/autoSetResumePass"
         self.s.post(base_url,data="",headers=self.headers)
 
-        time.sleep(3)
+        time.sleep(1)
         # 检查老师状态
         col_teachers = self.db['teachers']
         auditStatus = col_teachers.find_one({"email" : "uat01@qq.com"})["auditStatus"]["status"]
@@ -344,7 +352,7 @@ class CreateTeacherByReg(unittest.TestCase):
         base_url = "http://uat-svc.51uuabc.com:14495/api/handler/autoSetResumePass"
         self.s.post(base_url,data="",headers=self.headers)
 
-        time.sleep(3)
+        time.sleep(1)
         # 检查老师状态
         col_teachers = self.db['teachers']
         auditStatus = col_teachers.find_one({"email" : "uat01@qq.com"})["auditStatus"]["status"]
@@ -359,14 +367,14 @@ class CreateTeacherByReg(unittest.TestCase):
 
 
     def tearDown(self):
-        # delSql = "DELETE a,b,c from sso_user a LEFT JOIN sishu.bk_user b on (a.sso_uuid = b.uuid) LEFT JOIN sishu.bk_user_info c on b.uid = c.uid where a.email= 'uat01@qq.com'"
-        # connect_mysql(delSql)
-        #
-        #
-        # col_teachers = self.db["teachers"]
-        # col_teachers.delete_one({'email': 'uat01@qq.com'})
-        # col_resumes = self.db["resumes"]
-        # col_resumes.delete_one({'email': 'uat01@qq.com'})
+        delSql = "DELETE a,b,c from sso_user a LEFT JOIN sishu.bk_user b on (a.sso_uuid = b.uuid) LEFT JOIN sishu.bk_user_info c on b.uid = c.uid where a.email= 'uat01@qq.com'"
+        connect_mysql(delSql)
+
+
+        col_teachers = self.db["teachers"]
+        col_teachers.delete_one({'email': 'uat01@qq.com'})
+        col_resumes = self.db["resumes"]
+        col_resumes.delete_one({'email': 'uat01@qq.com'})
 
 
         self.client.close()
@@ -375,14 +383,14 @@ class CreateTeacherByReg(unittest.TestCase):
 if __name__ == '__main__':
     # 构造测试集
     suite = unittest.TestSuite()
-    # suite.addTest(CreateTeacherByReg('test_01'))
-    # suite.addTest(CreateTeacherByReg('test_02'))
-    # suite.addTest(CreateTeacherByReg('test_03'))
-    # suite.addTest(CreateTeacherByReg('test_04'))
+    suite.addTest(CreateTeacherByReg('test_01'))
+    suite.addTest(CreateTeacherByReg('test_02'))
+    suite.addTest(CreateTeacherByReg('test_03'))
+    suite.addTest(CreateTeacherByReg('test_04'))
     suite.addTest(CreateTeacherByReg('test_05'))
-    # suite.addTest(CreateTeacherByReg('test_06'))
-    # suite.addTest(CreateTeacherByReg('test_07'))
-    # suite.addTest(CreateTeacherByReg('test_08'))
+    suite.addTest(CreateTeacherByReg('test_06'))
+    suite.addTest(CreateTeacherByReg('test_07'))
+    suite.addTest(CreateTeacherByReg('test_08'))
 
 
     with open('F://test//temp.html', 'wb') as fp:
