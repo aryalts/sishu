@@ -12,9 +12,6 @@ def send_mail(file_new):
     sender = 'lutishuo@126.com'
     receiver = ['tishuo.lu@uuabc.com','875867302@qq.com']
 
-    # f = open(file_new, 'rb')
-    # mail_body = f.read()
-    # f.close()
     with open(file_new, 'rb') as f:
         mail_body = f.read()
 

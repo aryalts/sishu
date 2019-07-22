@@ -112,7 +112,7 @@ def add_teacher(email_demo, first_name, last_name):
 
 
 if __name__ == '__main__':
-    num = 600
+    num = 651
     for i in range(50):
         email = "uat" + str(num) + "@qq.com"
         add_teacher(email_demo=email, first_name="uat"+str(num), last_name="test")

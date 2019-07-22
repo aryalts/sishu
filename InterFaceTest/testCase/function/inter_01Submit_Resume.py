@@ -364,7 +364,84 @@ class CreateTeacherByReg(unittest.TestCase):
         else:
             print("简历状态更新为:{}".format(auditStatus))
 
+    def test_09(self):
+        u"""线上工作经验超过12个月，自动审核通过"""
 
+        # 提交简历信息
+        self.headers['authorization'] = "Bearer " + self.resumeToken
+        resumeInfoPost = "{\"operationName\":\"resumeInfoPost\",\"variables\":{\"input\":{\"firstName\":\"uat01\",\"lastName\":\"test\",\"gender\":\"Male\",\"contactInfo\":{\"skype\":\"1\",\"phone\":\"3\",\"wechat\":\"2\"},\"isNativeSpeaker\":true,\"birthDate\":1561910400000,\"nationality\":\"United States\",\"currentResidence\":\"United States of America\",\"educationBackground\":\"Bachelor\",\"teachingExperience\":[{\"name\":\"Online\",\"months\":6},{\"name\":\"Offline\",\"months\":12}],\"chineseSkill\":\"Basic\",\"onlineHoursPerWeek\":\"LessThanFour\",\"selfIntroduction\":{\"text\":[{\"name\":\"short\",\"lang\":\"EN\",\"text\":\"123\"}],\"portrait\":[{\"name\":\"timg.jpg\",\"url\":\"https://uutest2.uuabc.com/photo/1563265330284.jpg\",\"sourceType\":\"PC\"}]},\"curriculumVitae\":[{\"name\":\"2016.doc\",\"url\":\"https://uutest2.uuabc.com/vitae/1563265335147.doc\",\"sourceType\":\"PC\"}],\"academicCertificates\":[],\"teachingCertificates\":[],\"detailEducationExperience\":[{\"startDate\":1561910400000,\"endDate\":1564502400000,\"countryOfInstitution\":\"Afghanistan\",\"nameOfInstitution\":\"1\",\"major\":\"2\"}],\"detailTeachingExperience\":[{\"startDate\":1561910400000,\"endDate\":1564502400000,\"countryOfInstitution\":\"Afghanistan\",\"nameOfInstitution\":\"1\",\"jobTitle\":\"2\",\"duty\":\"3\"}],\"teachingCertificateTypes\":[{\"key\":\"CELTA\",\"value\":\"CELTA\"},{\"key\":\"State\",\"value\":\"SEC\"},{\"key\":\"Others\",\"value\":\"pv\"}]}},\"query\":\"mutation resumeInfoPost($input: AddRegResumeInput!) {\\n  addRegResume(input: $input) {\\n    code\\n    msg\\n    __typename\\n  }\\n}\\n\"}"
+
+        data = xlrd.open_workbook(r'D:\PycharmProjects\sishu\InterFaceTest\testData\data.xlsx')
+        table = data.sheets()[0]
+        data = table.row_values(9)
+        nation, tongue, degree, online, offline ,status= data[0:6]
+
+        dicts_resumeInfoPost = json.loads(resumeInfoPost)
+        dicts_resumeInfoPost["variables"]["input"]["nationality"] = nation
+        dicts_resumeInfoPost["variables"]["input"]["isNativeSpeaker"] = bool(tongue)
+        dicts_resumeInfoPost["variables"]["input"]["educationBackground"] = degree
+        dicts_resumeInfoPost["variables"]["input"]["teachingExperience"][0]["months"] = int(online)
+        dicts_resumeInfoPost["variables"]["input"]["teachingExperience"][1]["months"] = int(offline)
+
+        resumeInfoPost = json.dumps(dicts_resumeInfoPost)
+        self.s.post(self.base_url, data=resumeInfoPost, headers=self.headers)
+        time.sleep(3)
+
+        # 执行定时任务
+        base_url = "http://uat-svc.51uuabc.com:14495/api/handler/autoSetResumePass"
+        self.s.post(base_url,data="",headers=self.headers)
+
+        time.sleep(1)
+        # 检查老师状态
+        col_teachers = self.db['teachers']
+        auditStatus = col_teachers.find_one({"email" : "uat01@qq.com"})["auditStatus"]["status"]
+
+        try:
+            self.assertEqual(auditStatus, status)
+        except AssertionError:
+            raise
+        else:
+            print("简历状态更新为:{}".format(auditStatus))
+
+
+    def test_10(self):
+        u"""线下工作经验超过12个月，自动审核通过"""
+
+        # 提交简历信息
+        self.headers['authorization'] = "Bearer " + self.resumeToken
+        resumeInfoPost = "{\"operationName\":\"resumeInfoPost\",\"variables\":{\"input\":{\"firstName\":\"uat01\",\"lastName\":\"test\",\"gender\":\"Male\",\"contactInfo\":{\"skype\":\"1\",\"phone\":\"3\",\"wechat\":\"2\"},\"isNativeSpeaker\":true,\"birthDate\":1561910400000,\"nationality\":\"United States\",\"currentResidence\":\"United States of America\",\"educationBackground\":\"Bachelor\",\"teachingExperience\":[{\"name\":\"Online\",\"months\":6},{\"name\":\"Offline\",\"months\":12}],\"chineseSkill\":\"Basic\",\"onlineHoursPerWeek\":\"LessThanFour\",\"selfIntroduction\":{\"text\":[{\"name\":\"short\",\"lang\":\"EN\",\"text\":\"123\"}],\"portrait\":[{\"name\":\"timg.jpg\",\"url\":\"https://uutest2.uuabc.com/photo/1563265330284.jpg\",\"sourceType\":\"PC\"}]},\"curriculumVitae\":[{\"name\":\"2016.doc\",\"url\":\"https://uutest2.uuabc.com/vitae/1563265335147.doc\",\"sourceType\":\"PC\"}],\"academicCertificates\":[],\"teachingCertificates\":[],\"detailEducationExperience\":[{\"startDate\":1561910400000,\"endDate\":1564502400000,\"countryOfInstitution\":\"Afghanistan\",\"nameOfInstitution\":\"1\",\"major\":\"2\"}],\"detailTeachingExperience\":[{\"startDate\":1561910400000,\"endDate\":1564502400000,\"countryOfInstitution\":\"Afghanistan\",\"nameOfInstitution\":\"1\",\"jobTitle\":\"2\",\"duty\":\"3\"}],\"teachingCertificateTypes\":[{\"key\":\"CELTA\",\"value\":\"CELTA\"},{\"key\":\"State\",\"value\":\"SEC\"},{\"key\":\"Others\",\"value\":\"pv\"}]}},\"query\":\"mutation resumeInfoPost($input: AddRegResumeInput!) {\\n  addRegResume(input: $input) {\\n    code\\n    msg\\n    __typename\\n  }\\n}\\n\"}"
+
+        data = xlrd.open_workbook(r'D:\PycharmProjects\sishu\InterFaceTest\testData\data.xlsx')
+        table = data.sheets()[0]
+        data = table.row_values(10)
+        nation, tongue, degree, online, offline ,status= data[0:6]
+
+        dicts_resumeInfoPost = json.loads(resumeInfoPost)
+        dicts_resumeInfoPost["variables"]["input"]["nationality"] = nation
+        dicts_resumeInfoPost["variables"]["input"]["isNativeSpeaker"] = bool(tongue)
+        dicts_resumeInfoPost["variables"]["input"]["educationBackground"] = degree
+        dicts_resumeInfoPost["variables"]["input"]["teachingExperience"][0]["months"] = int(online)
+        dicts_resumeInfoPost["variables"]["input"]["teachingExperience"][1]["months"] = int(offline)
+
+        resumeInfoPost = json.dumps(dicts_resumeInfoPost)
+        self.s.post(self.base_url, data=resumeInfoPost, headers=self.headers)
+        time.sleep(3)
+
+        # 执行定时任务
+        base_url = "http://uat-svc.51uuabc.com:14495/api/handler/autoSetResumePass"
+        self.s.post(base_url,data="",headers=self.headers)
+
+        time.sleep(1)
+        # 检查老师状态
+        col_teachers = self.db['teachers']
+        auditStatus = col_teachers.find_one({"email" : "uat01@qq.com"})["auditStatus"]["status"]
+
+        try:
+            self.assertEqual(auditStatus, status)
+        except AssertionError:
+            raise
+        else:
+            print("简历状态更新为:{}".format(auditStatus))
 
     def tearDown(self):
         delSql = "DELETE a,b,c from sso_user a LEFT JOIN sishu.bk_user b on (a.sso_uuid = b.uuid) LEFT JOIN sishu.bk_user_info c on b.uid = c.uid where a.email= 'uat01@qq.com'"
@@ -383,14 +460,14 @@ class CreateTeacherByReg(unittest.TestCase):
 if __name__ == '__main__':
     # 构造测试集
     suite = unittest.TestSuite()
-    suite.addTest(CreateTeacherByReg('test_01'))
-    suite.addTest(CreateTeacherByReg('test_02'))
-    suite.addTest(CreateTeacherByReg('test_03'))
-    suite.addTest(CreateTeacherByReg('test_04'))
-    suite.addTest(CreateTeacherByReg('test_05'))
-    suite.addTest(CreateTeacherByReg('test_06'))
-    suite.addTest(CreateTeacherByReg('test_07'))
-    suite.addTest(CreateTeacherByReg('test_08'))
+    # suite.addTest(CreateTeacherByReg('test_01'))
+    # suite.addTest(CreateTeacherByReg('test_02'))
+    # suite.addTest(CreateTeacherByReg('test_03'))
+    # suite.addTest(CreateTeacherByReg('test_04'))
+    # suite.addTest(CreateTeacherByReg('test_05'))
+    # suite.addTest(CreateTeacherByReg('test_06'))
+    suite.addTest(CreateTeacherByReg('test_09'))
+    suite.addTest(CreateTeacherByReg('test_10'))
 
 
     with open('F://test//temp.html', 'wb') as fp:
